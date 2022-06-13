@@ -9,9 +9,9 @@ public class ShipMovement : MonoBehaviour
 
     public float tiltAngle = 45;
     
-    public CharacterController ch;
+    private CharacterController ch;
 
-    public Vector3 movement;
+    private Vector3 movement;
 
     // Start is called before the first frame update
     void Start()
