@@ -15,6 +15,7 @@ public class AsteroidGenerator : MonoBehaviour
 
     private void Start()
     {
+        _asteroid.SetActive(false);
         _positions[0] = _centralPosition;
         _positions[1] = _leftPosition;
         _positions[2] = _rightPosition;

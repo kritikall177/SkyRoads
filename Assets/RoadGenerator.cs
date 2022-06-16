@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RoadGenerator : MonoBehaviour
 {
-    public GameObject RoadPrefab;
+    public Plane Road;
 
-    private List<GameObject> roads = new List<GameObject>();
+    private List<Plane> roads = new List<Plane>();
 
     public float startSpeed = 100;
     
@@ -20,7 +20,7 @@ public class RoadGenerator : MonoBehaviour
     
     private void Start()
     {
-        _roadOffset = RoadPrefab.GetComponent<MeshFilter>().sharedMesh.bounds.size.z;
+        _roadOffset = Road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
     }
     
@@ -33,10 +33,10 @@ public class RoadGenerator : MonoBehaviour
     {
         foreach (var road in roads)
         {
-            road.transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
+            road.planeGameObject.transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
         }
 
-        if (roads[0].transform.position.z < positionToOffset)
+        if (roads[0].planeGameObject.transform.position.z < positionToOffset)
         {
             ResetPosition();
         }
@@ -46,8 +46,8 @@ public class RoadGenerator : MonoBehaviour
     {
         var road = roads[0];
         roads.RemoveAt(0);
-        road.GetComponent<AsteroidGenerator>().SpawnAsteroid();
-        road.transform.position = roads[roads.Count - 1].transform.position + new Vector3(0,0, _roadOffset);
+        road.asteroidGenerator.SpawnAsteroid();
+        road.planeGameObject.transform.position = roads[roads.Count - 1].planeGameObject.transform.position + new Vector3(0,0, _roadOffset);
         roads.Add(road);
     }
     
@@ -60,9 +60,9 @@ public class RoadGenerator : MonoBehaviour
                   new Vector3(0, 0, _roadOffset); //z смешение на ширину плоскости
         }
 
-        var item = Instantiate(RoadPrefab, pos, Quaternion.identity);
-        item.transform.SetParent(transform);
-        roads.Add(item);
+        var road = Instantiate(Road, pos, Quaternion.identity);
+        road.transform.SetParent(transform);
+        roads.Add(road);
     }
 
     public void StartLevel()
