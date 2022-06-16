@@ -13,14 +13,12 @@ public class ShipMovement : MonoBehaviour
 
     private Vector3 movement;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         ch = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         movement = new Vector3(Input.GetAxis("Horizontal"), 0);
     }
@@ -32,7 +30,7 @@ public class ShipMovement : MonoBehaviour
 
     private void MoveCharacter(Vector3 direction)
     {
-        ch.Move(direction * speed * Time.deltaTime);
+        ch.Move(direction * (speed * Time.deltaTime));
         ch.transform.rotation = Quaternion.Euler(0, 0, -movement.x * tiltAngle);
     }
 }

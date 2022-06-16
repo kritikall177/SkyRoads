@@ -8,7 +8,7 @@ public class RoadGenerator : MonoBehaviour
 
     private List<GameObject> roads = new List<GameObject>();
 
-    public float startSpeed = 10;
+    public float startSpeed = 100;
     
     public int maxRoadCount = 5;
 
@@ -17,16 +17,14 @@ public class RoadGenerator : MonoBehaviour
     private float _speed = 0;
 
     private float _roadOffset;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
         _roadOffset = RoadPrefab.GetComponent<MeshFilter>().sharedMesh.bounds.size.z;
         StartLevel();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         RoadMovement();
     }
@@ -48,7 +46,8 @@ public class RoadGenerator : MonoBehaviour
     {
         var road = roads[0];
         roads.RemoveAt(0);
-        road.transform.position = roads[roads.Count - 2].transform.position + new Vector3(0,0, _roadOffset);
+        road.GetComponent<AsteroidGenerator>().SpawnAsteroid();
+        road.transform.position = roads[roads.Count - 1].transform.position + new Vector3(0,0, _roadOffset);
         roads.Add(road);
     }
     
