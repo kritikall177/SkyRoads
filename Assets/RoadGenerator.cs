@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class RoadGenerator : MonoBehaviour
 {
-    public Plane Road;
-
-    private List<Plane> roads = new List<Plane>();
-
-    public float startSpeed = 100;
+    [SerializeField] private Plane _road;
+    [SerializeField] private float _startSpeed = 100;
+    [SerializeField] private int _maxRoadCount = 15;
+    [SerializeField] private float _positionToOffset = -15; // position on z 
     
-    public int maxRoadCount = 5;
-
-    public float positionToOffset = -15; // position on z 
-
-    private float _speed = 0;
-
+    private float _speed;
     private float _roadOffset;
+    private readonly List<Plane> _roads = new List<Plane>();
     
     private void Start()
     {
-        _roadOffset = Road.meshFilter.sharedMesh.bounds.size.z;
+        _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
     }
     
@@ -31,12 +26,12 @@ public class RoadGenerator : MonoBehaviour
 
     private void RoadMovement()
     {
-        foreach (var road in roads)
+        foreach (var road in _roads)
         {
             road.planeGameObject.transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
         }
 
-        if (roads[0].planeGameObject.transform.position.z < positionToOffset)
+        if (_roads[0].planeGameObject.transform.position.z < _positionToOffset)
         {
             ResetPosition();
         }
@@ -44,47 +39,47 @@ public class RoadGenerator : MonoBehaviour
     
     private void ResetPosition()
     {
-        var road = roads[0];
-        roads.RemoveAt(0);
+        var road = _roads[0];
+        _roads.RemoveAt(0);
         road.asteroidGenerator.SpawnAsteroid();
-        road.planeGameObject.transform.position = roads[roads.Count - 1].planeGameObject.transform.position + new Vector3(0,0, _roadOffset);
-        roads.Add(road);
+        road.planeGameObject.transform.position = _roads[_roads.Count - 1].planeGameObject.transform.position + new Vector3(0,0, _roadOffset);
+        _roads.Add(road);
     }
     
     private void CreateNextRoad()
     {
         var pos = Vector3.zero;
-        if (roads.Count > 0)
+        if (_roads.Count > 0)
         {
-            pos = roads[roads.Count - 1].transform.position +
+            pos = _roads[_roads.Count - 1].transform.position +
                   new Vector3(0, 0, _roadOffset); //z смешение на ширину плоскости
         }
 
-        var road = Instantiate(Road, pos, Quaternion.identity);
+        var road = Instantiate(_road, pos, Quaternion.identity);
         road.transform.SetParent(transform);
-        roads.Add(road);
+        _roads.Add(road);
     }
 
     public void StartLevel()
     {
-        for (var i = 0; i < maxRoadCount; i++)
+        for (var i = 0; i < _maxRoadCount; i++)
         {
             CreateNextRoad();
         }
         
-        _speed = startSpeed;
+        _speed = _startSpeed;
     }
     
     public void ResetLevel()
     {
         _speed = 0;
-        while (roads.Count > 0)
+        while (_roads.Count > 0)
         {
-            Destroy(roads[0]);
-            roads.RemoveAt(0);
+            Destroy(_roads[0]);
+            _roads.RemoveAt(0);
         }
 
-        for (var i = 0; i < maxRoadCount; i++)
+        for (var i = 0; i < _maxRoadCount; i++)
         {
             CreateNextRoad();
         }

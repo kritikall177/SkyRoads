@@ -6,11 +6,13 @@ using Random = UnityEngine.Random;
 
 public class AsteroidGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject _asteroid;
+    [Range(0, 100)]
     [SerializeField] private int _spawnChance = 100;
+    [SerializeField] private GameObject _asteroid;
     [SerializeField] private Vector3 _centralPosition = new Vector3(0f, 1.3f, -5f);
     [SerializeField] private Vector3 _leftPosition = new Vector3(-3.5f, 1.3f, -5f);
     [SerializeField] private Vector3 _rightPosition = new Vector3(3.5f, 1.3f, -5f);
+    
     private Vector3[] _positions = new Vector3[3];
 
     private void Start()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.112988345, g: 0.13250932, b: 0.11821476, a: 1}
+  m_IndirectSpecularColor: {r: 0.112984546, g: 0.13250548, b: 0.11821129, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -475,25 +475,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1688114278 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 343648923970739860, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
-  m_PrefabInstance: {fileID: 343648923966591256}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1688114279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688114278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981500a9736d51f4cb35f89889c11248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  tiltAngle: 45
 --- !u!1 &1846515286
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +625,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship
       objectReference: {fileID: 0}
+    - target: {fileID: 343648923970739862, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5129675290127649497, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
+      propertyPath: _tiltAngle
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 343648923970739861, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
@@ -707,8 +696,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -4306730253855253706, guid: 55de99fc082742a4789ffdb3aea133ad, type: 3}
     - target: {fileID: 1224307277096253319, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}
+      propertyPath: _road
+      value: 
+      objectReference: {fileID: -4306730253855253706, guid: 55de99fc082742a4789ffdb3aea133ad, type: 3}
+    - target: {fileID: 1224307277096253319, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}
       propertyPath: startSpeed
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224307277096253319, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}
+      propertyPath: _startSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224307277096253319, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}
+      propertyPath: _maxRoadCount
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 343648923970739848}
   - component: {fileID: 343648923970739863}
   - component: {fileID: 343648923970739862}
-  - component: {fileID: 343648923970739861}
+  - component: {fileID: 5129675290127649497}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -101,7 +101,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &343648923970739861
+--- !u!114 &5129675290127649497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,8 +110,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 343648923970739860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41316bca78b58cb40ae5a02743c31a97, type: 3}
+  m_Script: {fileID: 11500000, guid: 981500a9736d51f4cb35f89889c11248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 15
   tiltAngle: 45
