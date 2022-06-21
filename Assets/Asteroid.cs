@@ -6,9 +6,9 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     [SerializeField] private Collider _collider;
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    
+    private void OnTriggerEnter(Collider _collider)
     {
-        Debug.Log("afafas");
+        Debug.Log("Взрыв");
     }
 }
