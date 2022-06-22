@@ -10,5 +10,6 @@ public class Asteroid : MonoBehaviour
     private void OnTriggerEnter(Collider _collider)
     {
         Debug.Log("Взрыв");
+        Time.timeScale = 0;
     }
 }
