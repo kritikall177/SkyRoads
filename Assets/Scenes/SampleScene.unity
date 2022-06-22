@@ -626,6 +626,10 @@ PrefabInstance:
       value: Spaceship
       objectReference: {fileID: 0}
     - target: {fileID: 343648923970739862, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
+      propertyPath: m_Radius
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 343648923970739862, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
