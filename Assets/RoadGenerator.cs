@@ -5,11 +5,13 @@ using UnityEngine;
 public class RoadGenerator : MonoBehaviour
 {
     [SerializeField] private Plane _road;
-    [SerializeField] private float _startSpeed = 100;
+    [SerializeField] private float _startSpeed = 30f;
     [SerializeField] private int _maxRoadCount = 15;
-    [SerializeField] private float _positionToOffset = -15; // position on z 
+    [SerializeField] private float _positionToOffset = -15f; // position on z 
+    [SerializeField] private float _speedAcceleration = 5.5f; 
     
-    private float _speed;
+    
+    private float _currentSpeed;
     private float _roadOffset;
     private readonly List<Plane> _roads = new List<Plane>();
     
@@ -28,13 +30,16 @@ public class RoadGenerator : MonoBehaviour
     {
         foreach (var road in _roads)
         {
-            road.planeGameObject.transform.position -= new Vector3(0, 0, _speed * Time.deltaTime);
+            road.planeGameObject.transform.position -= new Vector3(0, 0, _currentSpeed * Time.deltaTime);
         }
 
         if (_roads[0].planeGameObject.transform.position.z < _positionToOffset)
         {
             ResetPosition();
         }
+
+        _currentSpeed += _speedAcceleration * Time.deltaTime;
+        Debug.Log(_currentSpeed);
     }
     
     private void ResetPosition()
@@ -67,12 +72,12 @@ public class RoadGenerator : MonoBehaviour
             CreateNextRoad();
         }
         
-        _speed = _startSpeed;
+        _currentSpeed = _startSpeed;
     }
     
     public void ResetLevel()
     {
-        _speed = 0;
+        _currentSpeed = 0;
         while (_roads.Count > 0)
         {
             Destroy(_roads[0]);

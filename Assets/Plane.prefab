@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2015144477fd3d4baeedc6fd8c15597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnChance: 33
+  _spawnChance: 100
   _asteroid: {fileID: 372803040947865391}
   _centralPosition: {x: 0, y: 1.3, z: -5}
   _leftPosition: {x: -3.5, y: 1.3, z: -5}

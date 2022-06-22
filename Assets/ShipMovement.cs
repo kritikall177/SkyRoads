@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//_characterController.transform.Rotate(Vector3.down * Time.deltaTime * _speed); плавный поворот корабля в меню.
+
 public class ShipMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 15;
+    [SerializeField] private float _speedRotation = 15;
     [SerializeField] private float _tiltAngle = 45;
     
     private CharacterController _characterController;
@@ -28,8 +28,8 @@ public class ShipMovement : MonoBehaviour
 
     private void TurnOfTheShip(Vector3 direction)
     {
-        _characterController.Move(direction * (_speed * Time.deltaTime));
+        _characterController.Move(direction * (_speedRotation * Time.deltaTime));
         _characterController.transform.rotation = Quaternion.RotateTowards(_characterController.transform.rotation,
-            Quaternion.Euler(0, 0, -_movement.x * _tiltAngle), _speed);
+            Quaternion.Euler(0, 0, -_movement.x * _tiltAngle), _speedRotation);
     }
 }

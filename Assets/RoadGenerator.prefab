@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b40c3276265f645b7894b40eb47992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoadPrefab: {fileID: 6041397216423512196, guid: 55de99fc082742a4789ffdb3aea133ad, type: 3}
-  startSpeed: 50
-  maxRoadCount: 30
-  positionToOffset: -15
+  _road: {fileID: -4306730253855253706, guid: 55de99fc082742a4789ffdb3aea133ad, type: 3}
+  _startSpeed: 100
+  _maxRoadCount: 15
+  _positionToOffset: -15
