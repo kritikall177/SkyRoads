@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] private float _startSpeed = 30f;
     [SerializeField] private int _maxRoadCount = 15;
     [SerializeField] private float _positionToOffset = -15f; // position on z 
-    [SerializeField] private float _speedAcceleration = 5.5f; 
+    [SerializeField] private float _speedAcceleration = 1f;
     
     
     private float _currentSpeed;
@@ -19,11 +20,17 @@ public class RoadGenerator : MonoBehaviour
     {
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
+        StartCoroutine(SpeedBoost());
     }
     
     private void Update()
     {
         RoadMovement();
+    }
+
+    private void FixedUpdate()
+    {
+        NitroAcceleration();
     }
 
     private void RoadMovement()
@@ -37,9 +44,6 @@ public class RoadGenerator : MonoBehaviour
         {
             ResetPosition();
         }
-
-        _currentSpeed += _speedAcceleration * Time.deltaTime;
-        Debug.Log(_currentSpeed);
     }
     
     private void ResetPosition()
@@ -87,6 +91,25 @@ public class RoadGenerator : MonoBehaviour
         for (var i = 0; i < _maxRoadCount; i++)
         {
             CreateNextRoad();
+        }
+    }
+
+    private IEnumerator SpeedBoost()
+    {
+        yield return new WaitForSeconds(1);
+        _currentSpeed += _speedAcceleration;
+        StartCoroutine(SpeedBoost());
+    }
+
+    public void NitroAcceleration()
+    {
+        if (Input.GetKey(KeyCode.X))
+        {
+            _currentSpeed = 60f;
+        }
+        else
+        {
+            _currentSpeed = 30f;
         }
     }
 }
