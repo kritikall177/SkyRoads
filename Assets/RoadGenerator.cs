@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class RoadGenerator : MonoBehaviour
 {
+    [SerializeField] private CameraEffects _cameraEffects;
     [SerializeField] private Plane _road;
     [SerializeField] private float _startSpeed = 30f;
     [SerializeField] private int _maxRoadCount = 15;
     [SerializeField] private float _positionToOffset = -15f; // position on z 
-    [SerializeField] private float _speedAcceleration = 1f;
-    
-    
+    [SerializeField] private float _defaultAccelerationSpeed = 1f;
+
     private float _currentSpeed;
+    private float _defaultSpeed;
+    private bool _isAcceleration;
     private float _roadOffset;
     private readonly List<Plane> _roads = new List<Plane>();
     
@@ -26,11 +28,7 @@ public class RoadGenerator : MonoBehaviour
     private void Update()
     {
         RoadMovement();
-    }
-
-    private void FixedUpdate()
-    {
-        NitroAcceleration();
+        _isAcceleration = Input.GetKey(KeyCode.Space);
     }
 
     private void RoadMovement()
@@ -76,7 +74,8 @@ public class RoadGenerator : MonoBehaviour
             CreateNextRoad();
         }
         
-        _currentSpeed = _startSpeed;
+        _defaultSpeed = _startSpeed;
+        _currentSpeed = _defaultSpeed;
     }
     
     public void ResetLevel()
@@ -97,19 +96,22 @@ public class RoadGenerator : MonoBehaviour
     private IEnumerator SpeedBoost()
     {
         yield return new WaitForSeconds(1);
-        _currentSpeed += _speedAcceleration;
+        _defaultSpeed += _defaultAccelerationSpeed;
+        _currentSpeed = CheckOnNitro();
         StartCoroutine(SpeedBoost());
     }
 
-    public void NitroAcceleration()
+    private float CheckOnNitro()
     {
-        if (Input.GetKey(KeyCode.X))
+        if (_isAcceleration)
         {
-            _currentSpeed = 60f;
+            _cameraEffects.NitroEffect(true);
+            return _defaultSpeed * 2;
         }
         else
         {
-            _currentSpeed = 30f;
+            _cameraEffects.NitroEffect(false);
+            return _defaultSpeed;
         }
-    }
+    } 
 }
