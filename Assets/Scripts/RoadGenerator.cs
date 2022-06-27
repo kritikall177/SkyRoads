@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoadGenerator : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] private float _positionToOffset = -15f; // position on z 
     [SerializeField] private float _defaultAccelerationSpeed = 1f;
 
-    private float _currentSpeed;
+    public float _currentSpeed;
     private float _defaultSpeed;
-    private bool _isAcceleration;
     private float _roadOffset;
     private readonly List<Plane> _roads = new List<Plane>();
-    
+
+    private UnityEvent<bool> OnSpaceDown;
+
     private void Start()
     {
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
@@ -28,7 +30,7 @@ public class RoadGenerator : MonoBehaviour
     private void Update()
     {
         RoadMovement();
-        _isAcceleration = Input.GetKey(KeyCode.Space);
+        CheckAccelerationOnKey(Input.GetKey(KeyCode.Space));
     }
 
     private void RoadMovement()
@@ -97,21 +99,22 @@ public class RoadGenerator : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         _defaultSpeed += _defaultAccelerationSpeed;
-        _currentSpeed = CheckOnNitro();
         StartCoroutine(SpeedBoost());
     }
 
-    private float CheckOnNitro()
+    private void CheckAccelerationOnKey(bool isPressed)
     {
-        if (_isAcceleration)
+        if (isPressed)
         {
-            _cameraEffects.NitroEffect(true);
-            return _defaultSpeed * 2;
+            _currentSpeed = _cameraEffects.IsLerp
+                ? Mathf.Lerp(_defaultSpeed, _defaultSpeed * 2, _cameraEffects.PercentageOfLerp)
+                : _defaultSpeed * 2;
         }
         else
         {
-            _cameraEffects.NitroEffect(false);
-            return _defaultSpeed;
+            _currentSpeed = _cameraEffects.IsLerp
+                ? Mathf.Lerp(_defaultSpeed * 2, _defaultSpeed, _cameraEffects.PercentageOfLerp)
+                : _defaultSpeed;
         }
-    } 
+    }
 }

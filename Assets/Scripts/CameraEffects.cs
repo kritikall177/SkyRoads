@@ -5,26 +5,58 @@ using UnityEngine;
 
 public class CameraEffects : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
-    [SerializeField] private ParticleSystem _particleSystem;
-
+    [SerializeField] public Camera _camera;
+    [SerializeField] public ParticleSystem _particleSystem;
+    [SerializeField] private float durationLerp = 1f;
+    [SerializeField] private float maxFOV = 80f;
+    [SerializeField] private float minFOV = 60f;
+    
+    public float ElapsedTime { get; private set; }
+    public float PercentageOfLerp { get; private set; }
+    public bool IsLerp { get; private set; }
+    
     private void Start()
     {
         _particleSystem.Stop();
     }
 
-    public void NitroEffect(bool isActive)
+    private void Update()
     {
-        switch (isActive)
+        PercentageOfLerp = ElapsedTime / durationLerp;
+        CheckAccelerationOnKey(Input.GetKey(KeyCode.Space));
+    }
+
+    private void CheckAccelerationOnKey(bool isPressed)
+    {
+        if (isPressed)
         {
-            case true when _particleSystem.isPlaying == false:
+            if (_camera.fieldOfView < 80)
+            {
+                IsLerp = true;
+                ElapsedTime += Time.deltaTime;
+                _camera.fieldOfView = Mathf.Lerp(minFOV, maxFOV, PercentageOfLerp);
+            }
+            else if(!_particleSystem.isPlaying)
+            {
                 _particleSystem.Play();
-                _camera.fieldOfView += 20f;
-                break;
-            case false when _particleSystem.isStopped == false:
+                ElapsedTime = 0;
+                IsLerp = false;
+            }
+        }
+        else
+        {
+            if (_camera.fieldOfView > 60)
+            {
+                IsLerp = true;
+                ElapsedTime += Time.deltaTime;
+                _camera.fieldOfView = Mathf.Lerp(maxFOV, minFOV, PercentageOfLerp);
+            }
+            else if(!_particleSystem.isStopped)
+            {
                 _particleSystem.Stop();
-                _camera.fieldOfView -= 20f;
-                break;
+                ElapsedTime = 0;
+                IsLerp = false;
+            }
         }
     }
 }
