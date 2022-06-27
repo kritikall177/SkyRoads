@@ -442,6 +442,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 963194227}
   _particleSystem: {fileID: 1697650778}
+  durationLerp: 1
+  maxFOV: 80
+  minFOV: 60
 --- !u!1 &1697650776
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,7 +5483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224307277096253319, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}
       propertyPath: _startSpeed
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1224307277096253319, guid: 007a05e3f991e3440b11c4a5cdb8227a, type: 3}
       propertyPath: _maxRoadCount
