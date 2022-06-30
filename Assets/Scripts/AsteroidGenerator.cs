@@ -9,6 +9,7 @@ public class AsteroidGenerator : MonoBehaviour
     [Range(0, 100)]
     [SerializeField] private int _spawnChance = 100;
     [SerializeField] private GameObject _asteroid;
+    [SerializeField] private GameObject _addScoreTrigger;
     [SerializeField] private Vector3 _centralPosition = new Vector3(0f, 1.3f, -5f);
     [SerializeField] private Vector3 _leftPosition = new Vector3(-3.5f, 1.3f, -5f);
     [SerializeField] private Vector3 _rightPosition = new Vector3(3.5f, 1.3f, -5f);
@@ -27,11 +28,13 @@ public class AsteroidGenerator : MonoBehaviour
         if (Random.Range(0, 101) <= _spawnChance)
         {
             _asteroid.SetActive(true);
+            _addScoreTrigger.SetActive(true);
             _asteroid.transform.localPosition = _positions[Random.Range(0, 3)];
         }
         else
         {
             _asteroid.SetActive(false);
+            _addScoreTrigger.SetActive(false);
         }
     }
 }
