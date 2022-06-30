@@ -8,14 +8,10 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private float _speedRotation = 15;
     [SerializeField] private float _tiltAngle = 45;
     
-    private CharacterController _characterController;
+    [SerializeField] private CharacterController _characterController;
+    
     private Vector3 _movement;
-
-    private void Start()
-    {
-        _characterController = GetComponent<CharacterController>();
-    }
-
+    
     private void Update()
     {
         _movement = new Vector3(Input.GetAxis("Horizontal"), 0);

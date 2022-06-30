@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedRotation: 15
   _tiltAngle: 45
+  _characterController: {fileID: 343648923970739862}
 --- !u!1001 &1891721997364360516
 PrefabInstance:
   m_ObjectHideFlags: 0
