@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+public class AddScoreTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Взрыв");
-        //Time.timeScale = 0;
+        ScoreSystem.AsteroidPassed?.Invoke();
     }
 }

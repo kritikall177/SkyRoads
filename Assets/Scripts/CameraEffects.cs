@@ -11,7 +11,7 @@ public class CameraEffects : MonoBehaviour
 
     private void Start()
     {
-        LerpSystem.LerpAction += ChangeCameraFieldOfView;
+        LerpAccelerationSystem.LerpAction += ChangeCameraFieldOfView;
     }
 
     private void ChangeCameraFieldOfView(bool isPressed, float percentageOfLerp)

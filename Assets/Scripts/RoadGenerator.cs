@@ -22,7 +22,7 @@ public class RoadGenerator : MonoBehaviour
 
     private void Start()
     {
-        LerpSystem.LerpAction += ChangeCurrentSpeed;
+        LerpAccelerationSystem.LerpAction += ChangeCurrentSpeed;
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
         StartCoroutine(SpeedBoost());

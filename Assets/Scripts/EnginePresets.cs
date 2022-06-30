@@ -17,7 +17,7 @@ public class EnginePresets : MonoBehaviour
 
     private void Start()
     {
-        LerpSystem.LerpAction += ChangeEngineParticle;
+        LerpAccelerationSystem.LerpAction += ChangeEngineParticle;
         _engineMainModule = _engineParticleSystem.main;
         _engineMainModule.startColor = _defaultStartColor;
         _engineMainModule.startSpeed = _defaultStartSpeed;

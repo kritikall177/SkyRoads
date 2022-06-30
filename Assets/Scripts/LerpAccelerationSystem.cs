@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LerpSystem : MonoBehaviour
+public class LerpAccelerationSystem : MonoBehaviour
 {
     [SerializeField] private float durationLerp = 1f;
     [SerializeField] private SpeedLineEffect _speedLineEffect;
+    [SerializeField] private ScoreSystem _scoreSystem;
     public float ElapsedTime { get; private set; }
     public float PercentageOfLerp { get; private set; }
     public bool IsLerp { get; private set; }
@@ -17,15 +18,16 @@ public class LerpSystem : MonoBehaviour
     private void Update()
     {
         PercentageOfLerp = ElapsedTime / durationLerp;
-        EffectOnButton(Input.GetKey(KeyCode.Space));
+        AccelerationOnButton(Input.GetKey(KeyCode.Space));
     }
 
-    private void EffectOnButton(bool buttonIsPressed)
+    private void AccelerationOnButton(bool buttonIsPressed)
     {
         if (buttonIsPressed)
         {
             if (PercentageOfLerp < 1)
             {
+                _scoreSystem.IsAcceleration = true;
                 IsLerp = true;
                 ElapsedTime += Time.deltaTime;
                 LerpAction?.Invoke(true, PercentageOfLerp);
@@ -50,6 +52,7 @@ public class LerpSystem : MonoBehaviour
             }
             else
             {
+                _scoreSystem.IsAcceleration = false;
                 _speedLineEffect.Stop();
                 IsLerp = false;
                 ElapsedTime = 0;
