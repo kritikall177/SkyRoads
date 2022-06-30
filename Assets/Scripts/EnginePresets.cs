@@ -17,14 +17,13 @@ public class EnginePresets : MonoBehaviour
 
     private void Start()
     {
-        NewBehaviourScript.WhenLerp += IsAccelerated;
-        
+        LerpSystem.LerpAction += ChangeEngineParticle;
         _engineMainModule = _engineParticleSystem.main;
         _engineMainModule.startColor = _defaultStartColor;
         _engineMainModule.startSpeed = _defaultStartSpeed;
     }
-
-    private void IsAccelerated(bool isPressed, float percentageOfLerp)
+    
+    private void ChangeEngineParticle(bool isPressed, float percentageOfLerp)
     {
         if (isPressed)
         {

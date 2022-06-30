@@ -22,6 +22,7 @@ public class RoadGenerator : MonoBehaviour
 
     private void Start()
     {
+        LerpSystem.LerpAction += ChangeCurrentSpeed;
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
         StartCoroutine(SpeedBoost());
@@ -30,7 +31,6 @@ public class RoadGenerator : MonoBehaviour
     private void Update()
     {
         RoadMovement();
-        CheckAccelerationOnKey(Input.GetKey(KeyCode.Space));
     }
 
     private void RoadMovement()
@@ -102,19 +102,15 @@ public class RoadGenerator : MonoBehaviour
         StartCoroutine(SpeedBoost());
     }
 
-    private void CheckAccelerationOnKey(bool isPressed)
+    private void ChangeCurrentSpeed(bool isPressed, float percentageOfLerp)
     {
         if (isPressed)
         {
-            _currentSpeed = _cameraEffects.IsLerp
-                ? Mathf.Lerp(_defaultSpeed, _defaultSpeed * 2, _cameraEffects.PercentageOfLerp)
-                : _defaultSpeed * 2;
+            _currentSpeed = Mathf.Lerp(_defaultSpeed, _defaultSpeed * 2, percentageOfLerp);
         }
         else
         {
-            _currentSpeed = _cameraEffects.IsLerp
-                ? Mathf.Lerp(_defaultSpeed * 2, _defaultSpeed, _cameraEffects.PercentageOfLerp)
-                : _defaultSpeed;
+            _currentSpeed = Mathf.Lerp(_defaultSpeed * 2, _defaultSpeed, percentageOfLerp);
         }
     }
 }
