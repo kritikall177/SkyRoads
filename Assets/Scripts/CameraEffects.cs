@@ -6,41 +6,23 @@ using UnityEngine;
 public class CameraEffects : MonoBehaviour
 {
     [SerializeField] public Camera _camera;
-    [SerializeField] public ParticleSystem _particleSystem;
-    
-    [SerializeField] private float maxFOV = 80f;
-    [SerializeField] private float minFOV = 60f;
-    
+    [SerializeField] private float maxFieldOfView = 80f;
+    [SerializeField] private float minFieldOfView = 60f;
+
     private void Start()
     {
-        //NewBehaviourScript.WhenLerp += CheckAccelerationOnKey;
-        
-        _particleSystem.Stop();
+        LerpAccelerationSystem.LerpAction += ChangeCameraFieldOfView;
     }
 
-    private void CheckAccelerationOnKey(bool isPressed, float percentageOfLerp)
+    private void ChangeCameraFieldOfView(bool isPressed, float percentageOfLerp)
     {
         if (isPressed)
         {
-            if (_camera.fieldOfView < 80)
-            {
-                _camera.fieldOfView = Mathf.Lerp(minFOV, maxFOV, percentageOfLerp);
-            }
-            else if(!_particleSystem.isPlaying)
-            {
-                _particleSystem.Play();
-            }
+            _camera.fieldOfView = Mathf.Lerp(minFieldOfView, maxFieldOfView, percentageOfLerp);
         }
         else
         {
-            if (_camera.fieldOfView > 60)
-            {
-                _camera.fieldOfView = Mathf.Lerp(maxFOV, minFOV, percentageOfLerp);
-            }
-            else if(!_particleSystem.isStopped)
-            {
-                _particleSystem.Stop();
-            }
+            _camera.fieldOfView = Mathf.Lerp(maxFieldOfView, minFieldOfView, percentageOfLerp);
         }
     }
 }
