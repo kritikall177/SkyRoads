@@ -22,10 +22,11 @@ public class RoadGenerator : MonoBehaviour
 
     private void Start()
     {
+        ShipBreaking.CollisionAsteroid += StopLevel;
+        
         LerpAccelerationSystem.LerpAction += ChangeCurrentSpeed;
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
-        StartCoroutine(SpeedBoost());
     }
     
     private void Update()
@@ -78,6 +79,7 @@ public class RoadGenerator : MonoBehaviour
         
         _defaultSpeed = _startSpeed;
         _currentSpeed = _defaultSpeed;
+        StartCoroutine(SpeedBoost());
     }
     
     public void ResetLevel()
@@ -93,6 +95,13 @@ public class RoadGenerator : MonoBehaviour
         {
             CreateNextRoad();
         }
+    }
+
+    public void StopLevel()
+    {
+        _currentSpeed = 0;
+        StopCoroutine(SpeedBoost());
+        // Сделать отдельный класс с экшенами накоторые будут все подписываться, для остановки и возобнавления 
     }
 
     private IEnumerator SpeedBoost()

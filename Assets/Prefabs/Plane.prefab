@@ -206,7 +206,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &8641420273090274895
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnChance: 20
   _asteroid: {fileID: 372803040947865391}
+  _asteroidCollider: {fileID: 373479311005079973}
   _addScoreTrigger: {fileID: 4287646178431300389}
   _centralPosition: {x: 0, y: 1.3, z: -5}
   _leftPosition: {x: -3.5, y: 1.3, z: -5}
@@ -293,6 +294,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6530018243056870813, guid: c2e59aed9400b664494239f37d938dde, type: 3}
+      propertyPath: _asteroidGenerator
+      value: 
+      objectReference: {fileID: 8641420273090274895}
     - target: {fileID: 7244543888559410835, guid: c2e59aed9400b664494239f37d938dde, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -315,5 +320,10 @@ GameObject:
 --- !u!4 &8910129911337801219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1874236150310428607, guid: c2e59aed9400b664494239f37d938dde, type: 3}
+  m_PrefabInstance: {fileID: 7036236887713745340}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &373479311005079973 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 7244991486889545753, guid: c2e59aed9400b664494239f37d938dde, type: 3}
   m_PrefabInstance: {fileID: 7036236887713745340}
   m_PrefabAsset: {fileID: 0}

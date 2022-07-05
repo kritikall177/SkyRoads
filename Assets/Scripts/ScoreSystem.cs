@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
-    public Text Text;
+    [SerializeField] private int _defaultAddingScore = 1;
+    [SerializeField] private int _asteroidScore = 5;
     
-    public int Score { get; private set; }
+    public Text Text;
+
     public bool IsAcceleration;
-    private int _defaultAddingScore = 1;
-    private int _asteroidScore = 5;
+    private int _score;
 
     public static UnityAction AsteroidPassed;
     private void Start()
@@ -25,19 +26,19 @@ public class ScoreSystem : MonoBehaviour
         yield return new WaitForSeconds(1);
         if (IsAcceleration)
         {
-            Score += _defaultAddingScore * 2;
+            _score += _defaultAddingScore * 2;
         }
         else
         {
-            Score += _defaultAddingScore;
+            _score += _defaultAddingScore;
         }
-        Text.text = $"Score: {Score}";
+        Text.text = $"Score: {_score}";
         StartCoroutine(AddPoint());
     }
 
-    public void AddAsteroidPoint()
+    private void AddAsteroidPoint()
     {
-        Score += _asteroidScore;
-        Text.text = $"Score: {Score}";
+        _score += _asteroidScore;
+        Text.text = $"Score: {_score}";
     }
 }

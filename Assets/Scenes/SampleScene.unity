@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.112988345, g: 0.13250932, b: 0.11821476, a: 1}
+  m_IndirectSpecularColor: {r: 0.112984546, g: 0.13250548, b: 0.11821129, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 103948979}
   - component: {fileID: 103948978}
   - component: {fileID: 103948977}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 267964853}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,6 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1e7755e83e0034faeb0a328429a740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultAddingScore: 1
+  _asteroidScore: 5
   Text: {fileID: 1762452278}
   IsAcceleration: 0
 --- !u!4 &1458835642
@@ -5609,7 +5611,7 @@ GameObject:
   - component: {fileID: 1846515289}
   - component: {fileID: 1846515288}
   - component: {fileID: 1846515287}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5746,6 +5748,10 @@ PrefabInstance:
     - target: {fileID: 343648923970739860, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
       propertyPath: m_Name
       value: Spaceship
+      objectReference: {fileID: 0}
+    - target: {fileID: 343648923970739860, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 343648923970739862, guid: 572b8d55e73118f4689060386ef6a084, type: 3}
       propertyPath: m_Radius

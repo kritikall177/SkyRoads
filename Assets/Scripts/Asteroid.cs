@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collider)
+    [SerializeField] private AsteroidGenerator _asteroidGenerator;
+
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Взрыв");
-        //Time.timeScale = 0;
+        ShipBreaking.CollisionAsteroid?.Invoke();
     }
 }

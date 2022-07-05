@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 343648923970739863}
   - component: {fileID: 343648923970739862}
   - component: {fileID: 5129675290127649497}
+  - component: {fileID: 296483619431782057}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343648923970739860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1504354005615983259}
@@ -118,6 +119,20 @@ MonoBehaviour:
   _speedRotation: 15
   _tiltAngle: 45
   _characterController: {fileID: 343648923970739862}
+--- !u!114 &296483619431782057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343648923970739860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfce085cb60a5c148b4836e8a20f1a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultShip: {fileID: 343648923970739860}
+  _brokenShip: {fileID: 8171940757637754927, guid: 4f694721a0c3880488ccd6ea4a83fd13, type: 3}
 --- !u!1001 &1891721997364360516
 PrefabInstance:
   m_ObjectHideFlags: 0

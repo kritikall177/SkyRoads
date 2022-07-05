@@ -11,7 +11,13 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private CharacterController _characterController;
     
     private Vector3 _movement;
-    
+    private Transform _position;
+
+    private void Start()
+    {
+        _position = transform;
+    }
+
     private void Update()
     {
         _movement = new Vector3(Input.GetAxis("Horizontal"), 0);

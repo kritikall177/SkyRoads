@@ -36,4 +36,9 @@ public class EnginePresets : MonoBehaviour
             _engineMainModule.startSpeed = Mathf.Lerp(_accelerationStartSpeed, _defaultStartSpeed, percentageOfLerp);
         }
     }
+
+    private void OnDestroy()
+    {
+        LerpAccelerationSystem.LerpAction -= ChangeEngineParticle;
+    }
 }
