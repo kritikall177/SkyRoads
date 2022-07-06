@@ -9,6 +9,6 @@ public class Asteroid : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ShipBreaking.CollisionAsteroid?.Invoke();
+        GameEventManager.LoseGame?.Invoke();
     }
 }

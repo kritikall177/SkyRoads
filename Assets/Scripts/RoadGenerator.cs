@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class RoadGenerator : MonoBehaviour
 {
-    [SerializeField] private CameraEffects _cameraEffects;
     [SerializeField] private Plane _road;
     [SerializeField] private float _startSpeed = 30f;
     [SerializeField] private int _maxRoadCount = 15;
@@ -18,12 +17,10 @@ public class RoadGenerator : MonoBehaviour
     private float _roadOffset;
     private readonly List<Plane> _roads = new List<Plane>();
 
-    private UnityEvent<bool> OnSpaceDown;
-
     private void Start()
     {
-        ShipBreaking.CollisionAsteroid += StopLevel;
-        
+        GameEventManager.LoseGame += StopLevel;
+        GameEventManager.RestartGame += ResetLevel;
         LerpAccelerationSystem.LerpAction += ChangeCurrentSpeed;
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
@@ -62,7 +59,7 @@ public class RoadGenerator : MonoBehaviour
         if (_roads.Count > 0)
         {
             pos = _roads[_roads.Count - 1].transform.position +
-                  new Vector3(0, 0, _roadOffset); //z смешение на ширину плоскости
+                  new Vector3(0, 0, _roadOffset); // z смешение на ширину плоскости
         }
 
         var road = Instantiate(_road, pos, Quaternion.identity);
@@ -79,29 +76,28 @@ public class RoadGenerator : MonoBehaviour
         
         _defaultSpeed = _startSpeed;
         _currentSpeed = _defaultSpeed;
-        StartCoroutine(SpeedBoost());
+       StopAllCoroutines();
     }
     
     public void ResetLevel()
     {
-        _currentSpeed = 0;
         while (_roads.Count > 0)
         {
-            Destroy(_roads[0]);
-            _roads.RemoveAt(0);
+            var road = _roads[_roads.Count - 1];
+            _roads.RemoveAt(_roads.Count - 1);
+            Destroy(road.planeGameObject);
         }
 
-        for (var i = 0; i < _maxRoadCount; i++)
-        {
-            CreateNextRoad();
-        }
+        //Debug.Break();
+        StartLevel();
+        enabled = true;
     }
 
     public void StopLevel()
     {
-        _currentSpeed = 0;
+        _defaultSpeed = 0;
         StopCoroutine(SpeedBoost());
-        // Сделать отдельный класс с экшенами накоторые будут все подписываться, для остановки и возобнавления 
+        enabled = false;
     }
 
     private IEnumerator SpeedBoost()

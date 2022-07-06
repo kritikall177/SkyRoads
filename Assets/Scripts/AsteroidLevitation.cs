@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,9 +11,25 @@ public class AsteroidLevitation : MonoBehaviour
     
     private void Start()
     {
+        GameEventManager.LoseGame += StopAnimation;
+        StartAnimation();
+    }
+
+    private void StartAnimation()
+    {
         positionAsteroid.DORotate(new Vector3(0, 360, 0), _durationRotate, RotateMode.FastBeyond360).SetLoops(-1)
             .SetEase(Ease.Linear);
         positionAsteroid.DOLocalMove(positionAsteroid.localPosition + _amplitude, _durationMove)
             .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+    }
+
+    private void StopAnimation()
+    {
+        transform.DOKill();
+    }
+
+    private void OnDestroy()
+    {
+        GameEventManager.LoseGame -= StopAnimation;
     }
 }

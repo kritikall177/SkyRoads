@@ -15,6 +15,21 @@ public class LerpAccelerationSystem : MonoBehaviour
 
     public static UnityAction<bool, float> LerpAction;
 
+    private void Start()
+    {
+        GameEventManager.LoseGame += () =>
+        {
+            StopLerp();
+            enabled = false;
+        };
+        GameEventManager.RestartGame += () =>
+        {
+            StopLerp();
+            enabled = true;
+        };
+
+    }
+
     private void Update()
     {
         PercentageOfLerp = ElapsedTime / durationLerp;
@@ -52,11 +67,16 @@ public class LerpAccelerationSystem : MonoBehaviour
             }
             else
             {
-                _scoreSystem.IsAcceleration = false;
-                _speedLineEffect.Stop();
-                IsLerp = false;
-                ElapsedTime = 0;
+                StopLerp();
             }
         }
+    }
+
+    private void StopLerp()
+    {
+        _scoreSystem.IsAcceleration = false;
+        _speedLineEffect.Stop();
+        IsLerp = false;
+        ElapsedTime = 0;
     }
 }

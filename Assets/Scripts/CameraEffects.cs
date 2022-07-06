@@ -11,12 +11,13 @@ public class CameraEffects : MonoBehaviour
 
     private void Start()
     {
+        GameEventManager.RestartGame += () => _camera.fieldOfView = minFieldOfView;
         LerpAccelerationSystem.LerpAction += ChangeCameraFieldOfView;
     }
 
     private void ChangeCameraFieldOfView(bool isPressed, float percentageOfLerp)
     {
-        if (isPressed)
+        if (isPressed && Time.timeScale != 0)
         {
             _camera.fieldOfView = Mathf.Lerp(minFieldOfView, maxFieldOfView, percentageOfLerp);
         }

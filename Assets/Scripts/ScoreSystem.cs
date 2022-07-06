@@ -18,9 +18,19 @@ public class ScoreSystem : MonoBehaviour
     private void Start()
     {
         AsteroidPassed = AddAsteroidPoint;
+        GameEventManager.LoseGame += StopAllCoroutines;
+        GameEventManager.RestartGame += ResetScore;
         StartCoroutine(AddPoint());
     }
 
+    private void ResetScore()
+    {
+        _score = 0;
+        Text.text = $"Score: {_score}";
+        IsAcceleration = false;
+        StartCoroutine(AddPoint());
+    }
+    
     private IEnumerator AddPoint()
     {
         yield return new WaitForSeconds(1);

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartsOfShip : MonoBehaviour
+public class ShipExplosion : MonoBehaviour
 {
     [SerializeField] private Rigidbody[] _partsOfShip;
 

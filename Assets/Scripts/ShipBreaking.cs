@@ -7,17 +7,21 @@ using UnityEngine.Events;
 public class ShipBreaking : MonoBehaviour
 {
     [SerializeField] private GameObject _defaultShip;
-    [SerializeField] private PartsOfShip _brokenShip;
-    public static UnityAction CollisionAsteroid;
+    [SerializeField] private ShipExplosion brokenShipExplosion;
 
     private void Start()
     {
-        CollisionAsteroid += OnShipBroken;
+        GameEventManager.LoseGame += OnShipBroken;
     }
 
     private void OnShipBroken()
     {
-        Instantiate(_brokenShip, transform.position, Quaternion.identity);
+        Instantiate(brokenShipExplosion, transform.position, Quaternion.identity);
         Destroy(_defaultShip);
+    }
+    
+    private void OnDestroy()
+    {
+        GameEventManager.LoseGame -= OnShipBroken;
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 343648923970739862}
   - component: {fileID: 5129675290127649497}
   - component: {fileID: 296483619431782057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultShip: {fileID: 343648923970739860}
-  _brokenShip: {fileID: 8171940757637754927, guid: 4f694721a0c3880488ccd6ea4a83fd13, type: 3}
+  brokenShipExplosion: {fileID: 8171940757637754927, guid: 4f694721a0c3880488ccd6ea4a83fd13, type: 3}
 --- !u!1001 &1891721997364360516
 PrefabInstance:
   m_ObjectHideFlags: 0
