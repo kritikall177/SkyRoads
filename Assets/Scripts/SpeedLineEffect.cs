@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpeedLineEffect : MonoBehaviour
 {
-    public ParticleSystem ParticleSystem;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     private void Start()
     {
@@ -14,17 +14,17 @@ public class SpeedLineEffect : MonoBehaviour
 
     public void Stop()
     {
-        if (ParticleSystem.isPlaying)
+        if (_particleSystem.isPlaying)
         {
-            ParticleSystem.Stop();
+            _particleSystem.Stop();
         }
     }
     
     public void Play()
     {
-        if (ParticleSystem.isStopped)
+        if (_particleSystem.isStopped)
         {
-            ParticleSystem.Play();
+            _particleSystem.Play();
         }
     }
 }
