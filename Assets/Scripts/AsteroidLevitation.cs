@@ -11,7 +11,6 @@ public class AsteroidLevitation : MonoBehaviour
     
     private void Start()
     {
-        GameEventManager.LoseGame += StopAnimation;
         StartAnimation();
     }
 
@@ -23,13 +22,8 @@ public class AsteroidLevitation : MonoBehaviour
             .SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
     }
 
-    private void StopAnimation()
-    {
-        transform.DOKill();
-    }
-
     private void OnDestroy()
     {
-        GameEventManager.LoseGame -= StopAnimation;
+        transform.DOKill();
     }
 }

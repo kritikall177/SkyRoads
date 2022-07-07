@@ -11,6 +11,7 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] private int _maxRoadCount = 15;
     [SerializeField] private float _positionToOffset = -15f; // position on z 
     [SerializeField] private float _defaultAccelerationSpeed = 1f;
+    [SerializeField] private float _maxSpeed = 100f;
 
     public float _currentSpeed;
     private float _defaultSpeed;
@@ -26,7 +27,7 @@ public class RoadGenerator : MonoBehaviour
         StartLevel();
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         RoadMovement();
     }
@@ -35,7 +36,7 @@ public class RoadGenerator : MonoBehaviour
     {
         foreach (var road in _roads)
         {
-            road.planeGameObject.transform.position -= new Vector3(0, 0, _currentSpeed * Time.deltaTime);
+            road.planeGameObject.transform.Translate(new Vector3(0, 0, -_currentSpeed * Time.deltaTime));
         }
 
         if (_roads[0].planeGameObject.transform.position.z < _positionToOffset)
@@ -87,8 +88,7 @@ public class RoadGenerator : MonoBehaviour
             _roads.RemoveAt(_roads.Count - 1);
             Destroy(road.planeGameObject);
         }
-
-        //Debug.Break();
+        
         StartLevel();
         enabled = true;
     }
@@ -103,8 +103,11 @@ public class RoadGenerator : MonoBehaviour
     private IEnumerator SpeedBoost()
     {
         yield return new WaitForSeconds(1);
-        _defaultSpeed += _defaultAccelerationSpeed;
-        StartCoroutine(SpeedBoost());
+        if (_defaultSpeed < _maxSpeed)
+        {
+            _defaultSpeed += _defaultAccelerationSpeed;
+            StartCoroutine(SpeedBoost());
+        }
     }
 
     private void ChangeCurrentSpeed(bool isPressed, float percentageOfLerp)
