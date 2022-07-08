@@ -19,6 +19,11 @@ public class ShipBreaking : MonoBehaviour
         Instantiate(brokenShipExplosion, transform.position, Quaternion.identity);
         Destroy(_defaultShip);
     }
+
+    private void DestroyShip()
+    {
+        Destroy(_defaultShip);
+    }
     
     private void OnDestroy()
     {

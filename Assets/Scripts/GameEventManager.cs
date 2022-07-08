@@ -10,6 +10,8 @@ public class GameEventManager : MonoBehaviour
     public static UnityAction ResumeGame;
     public static UnityAction LoseGame;
     public static UnityAction RestartGame;
+    public static UnityAction StartGame;
+    public static UnityAction CloseGame;
 
     private void Start()
     {
@@ -31,5 +33,15 @@ public class GameEventManager : MonoBehaviour
         {
             RestartGame.Invoke();
         }
+    }
+
+    public void OnClick()
+    {
+        StartGame?.Invoke();
+    }
+    
+    public void OnClose()
+    {
+        CloseGame?.Invoke();
     }
 }
