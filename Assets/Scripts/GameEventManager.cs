@@ -11,7 +11,7 @@ public class GameEventManager : MonoBehaviour
     public static UnityAction LoseGame;
     public static UnityAction RestartGame;
     public static UnityAction StartGame;
-    public static UnityAction CloseGame;
+    public static UnityAction StopGame;
 
     private void Start()
     {
@@ -42,6 +42,6 @@ public class GameEventManager : MonoBehaviour
     
     public void OnClose()
     {
-        CloseGame?.Invoke();
+        StopGame?.Invoke();
     }
 }

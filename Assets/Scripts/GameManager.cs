@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameEventManager.StartGame += StartGame;
-        GameEventManager.CloseGame += StopGame;
+        GameEventManager.StopGame += StopGame;
     }
 
     private void StartGame()
