@@ -12,6 +12,8 @@ public class MainMenu : Window
         _newGame.onClick.AddListener(() =>
         {
             UIManager.Instance.ChangeCurrentWindowOn<GameUI>(gameObject);
+            GameEventManager.StartGame.Invoke();
+
         });
         _setting.onClick.AddListener(() =>
         {

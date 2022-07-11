@@ -9,24 +9,26 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] private int _defaultAddingScore = 1;
     [SerializeField] private int _asteroidScore = 5;
     
-    public Text Text;
+    public static Text Text { get; set; }
 
     public bool IsAcceleration;
     private int _score;
-
+    
     public static UnityAction AsteroidPassed;
+    
     private void Start()
     {
         AsteroidPassed = AddAsteroidPoint;
+        GameEventManager.StartGame += ResetScore;
         GameEventManager.LoseGame += StopAllCoroutines;
         GameEventManager.RestartGame += ResetScore;
+        GameEventManager.RestartGame += () => Text.text = $"Score: {_score}";
         StartCoroutine(AddPoint());
     }
 
     private void ResetScore()
     {
         _score = 0;
-        Text.text = $"Score: {_score}";
         IsAcceleration = false;
         StartCoroutine(AddPoint());
     }

@@ -1,7 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameUI : Window
 {
+    [SerializeField] private Button _pause;
+    [SerializeField] private Text _text;
+
+    private void Start()
+    {
+        ScoreSystem.Text = _text;
+        GameEventManager.StopGame += DestroyGameUI;
+        GameEventManager.PauseTime += DisableButton;
+        GameEventManager.ResumeTime += EnableButton;
+        _pause.onClick.AddListener(() =>
+        {
+            UIManager.Instance.Open<PauseMenu>();
+        });
+    }
+
+    private void DestroyGameUI()
+    {
+        Destroy(gameObject);
+    }
+    
+    private void DisableButton()
+    {
+        _pause.enabled = false;
+    }
+    
+    private void EnableButton()
+    {
+        _pause.enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameEventManager.StopGame -= DestroyGameUI;
+        GameEventManager.PauseTime -= DisableButton;
+        GameEventManager.ResumeTime -= EnableButton;
+    }
 }

@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class GameEventManager : MonoBehaviour
 {
-    public static UnityAction PauseGame;
-    public static UnityAction ResumeGame;
+    public static UnityAction PauseTime;
+    public static UnityAction ResumeTime;
     public static UnityAction LoseGame;
     public static UnityAction RestartGame;
     public static UnityAction StartGame;
@@ -15,19 +15,19 @@ public class GameEventManager : MonoBehaviour
 
     private void Start()
     {
-        PauseGame += () => Time.timeScale = 0;
-        ResumeGame += () => Time.timeScale = 1;
+        PauseTime += () => Time.timeScale = 0;
+        ResumeTime += () => Time.timeScale = 1;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseGame.Invoke();
+            PauseTime.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            ResumeGame.Invoke();
+            ResumeTime.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,13 +16,13 @@ public class UIManager : MonoBehaviour
         Instantiate(_ship, transform);
     }
 
-    private void Open<T>() where T : Window
+    public void Open<T>() where T : Window
     {
         var prefab = GetWindow<T>();
         Instantiate(prefab, transform);
     }
 
-    private void Close(GameObject window)
+    public void Close(GameObject window)
     {
         Destroy(window);
     }
