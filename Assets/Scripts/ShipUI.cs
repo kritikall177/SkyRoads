@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class ShipRotation : MonoBehaviour
+public class ShipUI : MonoBehaviour
 {
     [SerializeField] private Transform positionAsteroid;
     
     private float _durationRotate = 10f;
-    
+
     private void Start()
     {
+        GameEventManager.StartGame += Destroy;
         StartAnimation();
     }
 
@@ -19,9 +21,15 @@ public class ShipRotation : MonoBehaviour
         positionAsteroid.DORotate(new Vector3(10, 540, 0), _durationRotate, RotateMode.FastBeyond360).SetLoops(-1)
             .SetEase(Ease.Linear);
     }
+    
+    private void Destroy()
+    {
+        UIManager.Instance.Close(gameObject);
+    }
 
     private void OnDestroy()
     {
+        GameEventManager.StartGame -= Destroy;
         transform.DOKill();
     }
 }

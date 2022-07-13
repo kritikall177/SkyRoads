@@ -27,6 +27,7 @@ public class LerpAccelerationSystem : MonoBehaviour
             StopLerp();
             enabled = true;
         };
+        GameEventManager.StartGame += () => enabled = true;
 
     }
 

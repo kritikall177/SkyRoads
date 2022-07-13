@@ -16,10 +16,18 @@ public class GameUI : Window
         GameEventManager.StopGame += DestroyGameUI;
         GameEventManager.PauseTime += DisableButton;
         GameEventManager.ResumeTime += EnableButton;
+        GameEventManager.RestartGame += EnableButton;
+        GameEventManager.LoseGame += DisableButton;
+        GameEventManager.LoseGame += OpenLoseMenu;
         _pause.onClick.AddListener(() =>
         {
             UIManager.Instance.Open<PauseMenu>();
         });
+    }
+
+    private void OpenLoseMenu()
+    {
+        UIManager.Instance.Open<LosingMenu>();
     }
 
     private void DestroyGameUI()
@@ -42,5 +50,8 @@ public class GameUI : Window
         GameEventManager.StopGame -= DestroyGameUI;
         GameEventManager.PauseTime -= DisableButton;
         GameEventManager.ResumeTime -= EnableButton;
+        GameEventManager.RestartGame -= EnableButton;
+        GameEventManager.LoseGame -= DisableButton;
+        GameEventManager.LoseGame -= OpenLoseMenu;
     }
 }

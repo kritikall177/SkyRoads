@@ -15,6 +15,8 @@ public class CameraEffects : MonoBehaviour
     private void Start()
     {
         GameEventManager.StartGame += () => transform.rotation = Quaternion.Euler(_rotationToGame);
+        GameEventManager.StartGame += () => _camera.fieldOfView = minFieldOfView;
+        GameEventManager.StopGame += () => transform.rotation = Quaternion.Euler(_rotationToMenu);
         GameEventManager.RestartGame += () => _camera.fieldOfView = minFieldOfView;
         LerpAccelerationSystem.LerpAction += ChangeCameraFieldOfView;
     }

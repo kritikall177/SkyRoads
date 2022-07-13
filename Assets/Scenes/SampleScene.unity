@@ -695,7 +695,9 @@ MonoBehaviour:
   - {fileID: 4329384510400886929, guid: c1de6ce424b7f6a46b878e47cc45f769, type: 3}
   - {fileID: 2781933370195213860, guid: 1e8ecb8a1671f4440b420bb63667c080, type: 3}
   - {fileID: 191816295890902190, guid: 4e2341d74b5fb6e47a6c630ce050e972, type: 3}
+  - {fileID: 1427988636552482817, guid: 22847218c5fdb07448a7963df6e7940a, type: 3}
   _ship: {fileID: 5564706764049165633, guid: 303db63de750d1c489df859a98755359, type: 3}
+  _highScore: {fileID: 3357729749545226118, guid: 9f0fc500a9e3d864784ea65c878ccb66, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

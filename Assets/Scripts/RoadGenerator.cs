@@ -22,6 +22,7 @@ public class RoadGenerator : MonoBehaviour
     {
         GameEventManager.LoseGame += StopLevel;
         GameEventManager.RestartGame += ResetLevel;
+        GameEventManager.StartGame += ResetLevel;
         LerpAccelerationSystem.LerpAction += ChangeCurrentSpeed;
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();

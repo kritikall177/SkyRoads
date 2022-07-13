@@ -9,6 +9,8 @@ public class SpeedLineEffect : MonoBehaviour
 
     private void Start()
     {
+        GameEventManager.LoseGame += Stop;
+        GameEventManager.StopGame += Stop;
         Stop();
     }
 

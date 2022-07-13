@@ -18,30 +18,4 @@ public class GameEventManager : MonoBehaviour
         PauseTime += () => Time.timeScale = 0;
         ResumeTime += () => Time.timeScale = 1;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseTime.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            ResumeTime.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartGame.Invoke();
-        }
-    }
-
-    public void OnClick()
-    {
-        StartGame?.Invoke();
-    }
-    
-    public void OnClose()
-    {
-        StopGame?.Invoke();
-    }
 }

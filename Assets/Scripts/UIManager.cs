@@ -6,14 +6,17 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<Window> _listOfWindows;
     [SerializeField] private GameObject _ship;
-
+    [SerializeField] private GameObject _highScore;
     public static UIManager Instance { get; private set; }
 
     private void Start()
     {
+        GameEventManager.StopGame += CreateShip;
+        GameEventManager.StopGame += CreateHighScoreWindow;
+        CreateShip();
+        CreateHighScoreWindow();
         Instance = this;
         Open<MainMenu>();
-        Instantiate(_ship, transform);
     }
 
     public void Open<T>() where T : Window
@@ -45,5 +48,17 @@ public class UIManager : MonoBehaviour
         }
 
         return null;
+    }
+    
+    public void CreateShip()
+    {
+        Instantiate(_ship, transform);
+        
+    }
+    
+    public void CreateHighScoreWindow()
+    {
+        Instantiate(_highScore, transform);
+        
     }
 }

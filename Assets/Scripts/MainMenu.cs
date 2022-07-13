@@ -13,7 +13,6 @@ public class MainMenu : Window
         {
             UIManager.Instance.ChangeCurrentWindowOn<GameUI>(gameObject);
             GameEventManager.StartGame.Invoke();
-
         });
         _setting.onClick.AddListener(() =>
         {
