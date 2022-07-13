@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,21 +10,9 @@ public class WindowSettings : Window
     
     private void Start()
     {
-        _gameplay.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<GameplaySettings>(gameObject);
-        });
-        _video.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<VideoSettings>(gameObject);
-        });
-        _audio.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<AudioSettings>(gameObject);
-        });
-        _back.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<MainMenu>(gameObject);
-        });
+        _gameplay.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<GameplaySettings>(gameObject));
+        _video.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<VideoSettings>(gameObject));
+        _audio.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<AudioSettings>(gameObject));
+        _back.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<MainMenu>(gameObject));
     }
 }

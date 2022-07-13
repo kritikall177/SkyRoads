@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
@@ -11,12 +8,6 @@ public class ShipMovement : MonoBehaviour
     public static float _turningSpeed { get; private set; } = 15;
     
     private Vector3 _movement;
-    private Transform _position;
-
-    private void Start()
-    {
-        _position = transform;
-    }
 
     private void Update()
     {

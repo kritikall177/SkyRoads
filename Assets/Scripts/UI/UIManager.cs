@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,14 +48,14 @@ public class UIManager : MonoBehaviour
 
         return null;
     }
-    
-    public void CreateShip()
+
+    private void CreateShip()
     {
         Instantiate(_ship, transform);
         
     }
-    
-    public void CreateHighScoreWindow()
+
+    private void CreateHighScoreWindow()
     {
         Instantiate(_highScore, transform);
         

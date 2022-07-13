@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +13,6 @@ public class VideoSettings : Window
         _shadowDistance.value = QualitySettings.shadowDistance / 140;
         _antiAliasingToggle.onValueChanged.AddListener(isActive => QualitySettings.antiAliasing = isActive ? 2 : 0);
         _antiAliasingToggle.isOn = QualitySettings.antiAliasing > 0;
-        _back.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject);
-        });
+        _back.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject));
     }
 }

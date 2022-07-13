@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,9 +13,6 @@ public class GameplaySettings : Window
         _turningSpeed.onValueChanged.AddListener(ShipMovement.SetTurningSpeed);
         _difficulty.value = AsteroidGenerator.GetSpawnChance();
         _turningSpeed.value = ShipMovement.GetTurningSpeed();
-        _back.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject);
-        });
+        _back.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject));
     }
 }

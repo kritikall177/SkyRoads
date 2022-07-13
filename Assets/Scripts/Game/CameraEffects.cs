@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraEffects : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private Transform _cameraPosition;
+
     [SerializeField] private float maxFieldOfView = 80f;
     [SerializeField] private float minFieldOfView = 60f;
+    
     [SerializeField] private Vector3 _rotationToGame = new Vector3(10, 0, 0);
     [SerializeField] private Vector3 _rotationToMenu = new Vector3(-30, 0, 0);
 

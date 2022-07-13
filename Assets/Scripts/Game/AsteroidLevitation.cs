@@ -1,10 +1,10 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class AsteroidLevitation : MonoBehaviour
 {
     [SerializeField] private Transform positionAsteroid;
+    
     private float _durationRotate = 3f;
     private float _durationMove = 1f;
     private Vector3 _amplitude = new Vector3(0, 0.7f, 0);

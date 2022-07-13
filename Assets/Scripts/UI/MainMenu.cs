@@ -14,10 +14,7 @@ public class MainMenu : Window
             UIManager.Instance.ChangeCurrentWindowOn<GameUI>(gameObject);
             GameEventManager.StartGame.Invoke();
         });
-        _setting.onClick.AddListener(() =>
-        {
-            UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject);
-        });
+        _setting.onClick.AddListener(() => UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject));
         _quit.onClick.AddListener(Application.Quit);
     }
 }

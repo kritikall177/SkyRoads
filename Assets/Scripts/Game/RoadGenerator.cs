@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class RoadGenerator : MonoBehaviour
 {
     [SerializeField] private Plane _road;
+    
     [SerializeField] private float _startSpeed = 30f;
     [SerializeField] private int _maxRoadCount = 15;
     [SerializeField] private float _positionToOffset = -15f; // position on z 
@@ -16,6 +15,7 @@ public class RoadGenerator : MonoBehaviour
     public float _currentSpeed;
     private float _defaultSpeed;
     private float _roadOffset;
+    
     private readonly List<Plane> _roads = new List<Plane>();
 
     private void Start()
@@ -69,7 +69,7 @@ public class RoadGenerator : MonoBehaviour
         _roads.Add(road);
     }
 
-    public void StartLevel()
+    private void StartLevel()
     {
         for (var i = 0; i < _maxRoadCount; i++)
         {
@@ -80,8 +80,8 @@ public class RoadGenerator : MonoBehaviour
         _currentSpeed = _defaultSpeed;
        StopAllCoroutines();
     }
-    
-    public void ResetLevel()
+
+    private void ResetLevel()
     {
         while (_roads.Count > 0)
         {
@@ -94,7 +94,7 @@ public class RoadGenerator : MonoBehaviour
         enabled = true;
     }
 
-    public void StopLevel()
+    private void StopLevel()
     {
         _defaultSpeed = 0;
         StopCoroutine(SpeedBoost());

@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpaceDustEffect : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
+    
     [SerializeField] private float _defaultSpeed = 100f;
     [SerializeField] private float _maxSpeed = 500f;
     [SerializeField] private float _defaultAccelerationSpeed = 5f;
@@ -31,7 +31,7 @@ public class SpaceDustEffect : MonoBehaviour
         }
     }
 
-    public void Pause()
+    private void Pause()
     {
         if (_particleSystem.isPlaying)
         {
@@ -39,8 +39,8 @@ public class SpaceDustEffect : MonoBehaviour
             StopAllCoroutines();
         }
     }
-    
-    public void StartPlay()
+
+    private void StartPlay()
     {
         _speed = _defaultSpeed;
         StartCoroutine(AddSpeed());

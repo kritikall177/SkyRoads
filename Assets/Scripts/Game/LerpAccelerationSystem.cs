@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +6,7 @@ public class LerpAccelerationSystem : MonoBehaviour
     [SerializeField] private float durationLerp = 1f;
     [SerializeField] private SpeedLineEffect _speedLineEffect;
     [SerializeField] private ScoreSystem _scoreSystem;
+    
     public float ElapsedTime { get; private set; }
     public float PercentageOfLerp { get; private set; }
     public bool IsLerp { get; private set; }

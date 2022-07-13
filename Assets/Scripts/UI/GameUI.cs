@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameUI : Window
@@ -19,10 +15,7 @@ public class GameUI : Window
         GameEventManager.RestartGame += EnableButton;
         GameEventManager.LoseGame += DisableButton;
         GameEventManager.LoseGame += OpenLoseMenu;
-        _pause.onClick.AddListener(() =>
-        {
-            UIManager.Instance.Open<PauseMenu>();
-        });
+        _pause.onClick.AddListener(() => UIManager.Instance.Open<PauseMenu>());
     }
 
     private void OpenLoseMenu()
@@ -34,12 +27,12 @@ public class GameUI : Window
     {
         Destroy(gameObject);
     }
-    
+
     private void DisableButton()
     {
         _pause.enabled = false;
     }
-    
+
     private void EnableButton()
     {
         _pause.enabled = true;

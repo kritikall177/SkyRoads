@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class ShipBreaking : MonoBehaviour
 {
@@ -20,11 +17,6 @@ public class ShipBreaking : MonoBehaviour
         Destroy(_defaultShip);
     }
 
-    private void DestroyShip()
-    {
-        Destroy(_defaultShip);
-    }
-    
     private void OnDestroy()
     {
         GameEventManager.LoseGame -= OnShipBroken;
