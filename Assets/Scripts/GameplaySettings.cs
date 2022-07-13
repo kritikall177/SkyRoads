@@ -15,7 +15,7 @@ public class GameplaySettings : Window
         _difficulty.onValueChanged.AddListener(AsteroidGenerator.SetSpawnChance);
         _turningSpeed.onValueChanged.AddListener(ShipMovement.SetTurningSpeed);
         _difficulty.value = AsteroidGenerator.GetSpawnChance();
-        _turningSpeed.value = (float) ShipMovement.GetTurningSpeed();
+        _turningSpeed.value = ShipMovement.GetTurningSpeed();
         _back.onClick.AddListener(() =>
         {
             UIManager.Instance.ChangeCurrentWindowOn<WindowSettings>(gameObject);
