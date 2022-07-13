@@ -27,7 +27,7 @@ public class RoadGenerator : MonoBehaviour
         _roadOffset = _road.meshFilter.sharedMesh.bounds.size.z;
         StartLevel();
     }
-    
+
     private void FixedUpdate()
     {
         RoadMovement();
